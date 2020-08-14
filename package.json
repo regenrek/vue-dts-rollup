@@ -1,44 +1,22 @@
 {
-  "name": "@nujek/ui2",
+  "name": "vue-dts-rollup",
   "version": "0.0.1",
-  "repository": "git@gitlab.com:nujek2/nujek.git",
   "author": "Kevin Regenrek <hello@regenrek.at>",
-  "description": "Nujek framework",
+  "description": "example vue-dts-rollup",
   "license": "MIT",
   "scripts": {
     "build": "node ./scripts/build",
-    "release:gh": "bump --commit --tag --push --preid beta && conventional-github-releaser -p angular",
-    "release:local": "npm run readme:update && bump --commit --tag --preid beta && npm run publich:ci",
     "publish:ci": "node ./scripts/publish.js",
     "import": "node ./scripts/import",
-    "typings": "tsc --emitDeclarationOnly && node ./scripts/typing-fix",
+    "typings": "tsc --emitDeclarationOnly",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint './{packages,.storybook,scripts}/**/*.{js,ts,tsx,vue,md}'",
     "lint:fix": "npm run lint -- --fix",
-    "readme:update": "node ./scripts/updateReadme",
-    "clean": "rimraf dist typings storybook-static",
-    "dev": "start-storybook -p 6006",
-    "storybook": "start-storybook -p 6006",
-    "storybook:build": "npm run typings && build-storybook"
+    "clean": "rimraf dist typings storybook-static"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "{packages,.storybook,scripts}/**/*.{js,ts,tsx,vue,md} *.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "keywords": [
-    "vue",
-    "vue-use",
-    "utils"
-  ],
   "dependencies": {
+    "rollup-plugin-vue": "^6.0.0-beta.10",
     "vue-demi": "0.1.3"
   },
   "devDependencies": {
@@ -49,13 +27,6 @@
     "@babel/preset-typescript": "7.10.1",
     "@rollup/plugin-replace": "2.3.3",
     "@rollup/plugin-typescript": "5.0.1",
-    "@storybook/addon-actions": "5.3.19",
-    "@storybook/addon-knobs": "5.3.19",
-    "@storybook/addon-links": "5.3.19",
-    "@storybook/addon-notes": "5.3.19",
-    "@storybook/addons": "5.3.19",
-    "@storybook/theming": "5.3.19",
-    "@storybook/vue": "5.3.19",
     "@types/fs-extra": "9.0.1",
     "@types/inquirer": "6.5.0",
     "@types/jest": "26.0.0",
@@ -63,6 +34,7 @@
     "@types/node": "14.0.13",
     "@types/semver": "7.2.0",
     "@vue/babel-preset-jsx": "1.1.2",
+    "@vue/compiler-sfc": "^3.0.0-rc.5",
     "@vue/composition-api": "0.6.3",
     "@vue/runtime-dom": "3.0.0-beta.14",
     "@vue/test-utils": "1.0.3",
@@ -80,22 +52,13 @@
     "fast-glob": "3.2.4",
     "firebase": "7.15.1",
     "fs-extra": "9.0.1",
-    "github-markdown-css": "4.0.0",
-    "husky": "4.2.5",
     "inquirer": "7.1.0",
     "jest": "26.0.1",
     "js-yaml": "3.14.0",
-    "lint-staged": "10.2.10",
-    "markdown-it": "11.0.0",
-    "markdown-it-highlight-lines": "1.0.2",
-    "markdown-it-link-attributes": "3.0.0",
-    "markdown-it-loader": "0.7.0",
-    "markdown-it-prism": "2.0.5",
     "postcss": "7.0.32",
     "postcss-import": "12.0.1",
     "postcss-loader": "3.0.0",
     "prettier": "2.0.5",
-    "prismjs": "1.20.0",
     "raw-loader": "4.0.1",
     "rimraf": "3.0.2",
     "rollup": "2.16.1",

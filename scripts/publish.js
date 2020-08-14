@@ -12,11 +12,9 @@ async function publish() {
   for (const [pkg] of packages) {
     const packageDist = path.join(distDir, pkg)
 
-    const registry = 'http://172.104.140.27:4873'
+    exec('yarn publish --access public --non-interactive', { stdio: 'inherit', cwd: packageDist })
 
-    exec(`yarn publish --access --registry ${registry} public --non-interactive`, { stdio: 'inherit', cwd: packageDist })
-
-    consola.success(`Published @nujek/${pkg}`)
+    consola.success(`Published vue-dts-example/${pkg}`)
   }
 }
 
@@ -31,7 +29,7 @@ async function cli() {
 }
 
 module.exports = {
-  publish
+  publish,
 }
 
 if (require.main === module)

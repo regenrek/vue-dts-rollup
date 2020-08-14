@@ -10,7 +10,7 @@ const rootDir = path.resolve(__dirname, '..')
 const packageJSONDir = path.join(rootDir, 'package.json')
 
 const metaFiles = [
-  'LICENSE'
+  'LICENSE',
 ]
 
 assert(process.cwd() !== __dirname)
@@ -29,8 +29,8 @@ async function buildMetaFiles(packageVersion) {
       await fs.copyFile(path.join(packageSrc, 'README.md'), path.join(packageDist, 'README.md'))
 
     const packageJSON = {
-      name: `@nujek/${pkg}`,
-      description: 'Nujek Framework',
+      name: `@vue-dts-rollup/${pkg}`,
+      description: 'example',
       version: packageVersion,
       main: 'index.cjs.js',
       typings: 'index.d.ts',
@@ -38,25 +38,16 @@ async function buildMetaFiles(packageVersion) {
       unpkg: 'index.umd.min.js',
       jsdelivr: 'index.umd.min.js',
       browser: 'index.esm.js',
-      repository: {
-        type: 'git',
-        url: 'git+https://github.com/antfu/nujek.git'
-      },
       keywords: [
         'vue',
-        'vue-use',
         'utils',
-        ...(options.keywords || [])
+        ...(options.keywords || []),
       ],
       author: 'Kevin Regenrek <https://github.com/regenrek>',
       license: 'MIT',
-      bugs: {
-        url: 'https://github.com/antfu/nujek/issues'
-      },
-      homepage: 'git@gitlab.com:nujek2/nujek.git#readme',
       dependencies: {
-        'vue-demi': 'latest'
-      }
+        'vue-demi': 'latest',
+      },
     }
 
     await fs.writeFile(path.join(packageDist, 'package.json'), `${JSON.stringify(packageJSON, null, 2)}\n`)
@@ -93,7 +84,7 @@ async function cli() {
 }
 
 module.exports = {
-  build
+  build,
 }
 
 if (require.main === module)
